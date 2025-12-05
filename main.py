@@ -79,4 +79,4 @@ print(json.dumps(information, indent=4))
 
 
 
-print("In",location,"it is currently: ",information["weather"][0]["main"],"\n The dicription of the weather is",information["weather"][0]["description"])
+# print("In",location,"it is currently: ",information["weather"][0]["main"],"\n The dicription of the weather is",information["weather"][0]["description"])

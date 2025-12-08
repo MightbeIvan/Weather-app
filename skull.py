@@ -1,4 +1,5 @@
 play = True
+
 def runagain():
     again=input("Would you like to do something else (yes/no)\n>").lower().strip().replace(" ","")
     if again == "yes" or again == "y":

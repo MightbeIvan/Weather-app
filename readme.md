@@ -1,8 +1,8 @@
-# weather app!!
+# API WEATHER PROGRAM.
 
 Finds the weather of any location with the help of apis
 
-# Description
+## Description
 This program gets the weather of any location and displays it on the command!
 
 
@@ -16,47 +16,47 @@ This program gets the weather of any location and displays it on the command!
 * dictionary
 * list 
 
-### Executing the Program
+## Executing the Program
 r IDE, make sure you are in the project folder in the terminal and type: 
 ```sh
 python .py
 ``` 
 
-# Authors
+## Authors
 
 [MightbeIvan | Github](https://github.com/MightbeIvan)
 
 
 
-# Other important information about the program
+#Other important information about the program
 
-*Get the temmpreture.
+* Get the temmpreture.
 print(information["weather"][0]["temp"])
 
-*get Main Weather...
+* Get Main Weather...
 print(information["weather"][0]["main"])
 
-*get the cloud percentage
+* Get the cloud percentage
 print(informmation)["clouds"][0]["all"]
 
-*Get Decription of main weather
+* Get Decription of main weather
 print(information["weather"][0]["description"])
 
-*Get what the weather feels like
+* Get what the weather feels like
 print(informmation)["main"][0]["feels_like"]
 
-*Get the hummidity level
+* Get the hummidity level
 print(informmation)["main"][0]["humiidity"]
 
 #### WIND SPEEDS!
 
-*Get the wind speed
+* Get the wind speed
 print(informmation)["wind"][0]["speed"]
 
 
-*Get the direction the wind is blowing from.
+* Get the direction the wind is blowing from.
 
--0° 
+*- 0° 
 North
 
 -45°

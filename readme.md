@@ -1,7 +1,6 @@
-#MAIN WEATHERS!
 
 #Get the temmpreture.
-# print(information["weather"][0]["temp"])
+print(information["weather"][0]["temp"])
 
 #get Main Weather...
 # print(information["weather"][0]["main"])

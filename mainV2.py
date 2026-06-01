@@ -3,7 +3,8 @@ import json
 import time
 import os
 import math
-
+import sys
+os.system('cls||clear')
 #Control the While Loop
 play = True 
 
@@ -30,23 +31,11 @@ class WeatherApp:
         print(f"Humidity: {humidity}")
         
     def showWind(self):
-        wind = self.information["Wind"]["speed"]
+        wind = self.information["wind"]["speed"]
         
         print(f"wind Speed: {wind} m/s")
         
-'''
-#Asking for a Location
-print("Enter Location:")
-location = input(">")
 
-#Getting the Results
-weather = WeatherApp(location)
-weather.getWeather()
-weather.showCelsius()
-weather.showHumidity()
-weather.showWind()
-
-'''
 
 #Functions
 
@@ -60,19 +49,22 @@ def runagain(): #Loops through the code.
 def intoFahrenheit(celsius): #changes celcius to fahrenheit 
      return (celsius * 9/5) + 32
  
-def windDirectio(deg):
 
-    directions = [
-        "North",
-        "North-East",
-        "East",
-        "South-East",
-        "South",
-        "South-West",
-        "West",
-        "North-West"
-    ]
-    
-    index = round(deg / 45) % 8
-    return directions[index]
 
+def print(text, delay=0.03):
+    for char in text:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(delay)
+    print()
+
+
+#Asking for a Location
+print("Enter Location:")
+location = input(">")
+
+app = WeatherApp(location)
+app.getWeather()
+app.showCelsius()
+app.showHumidity()
+app.showWind()

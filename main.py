@@ -25,8 +25,6 @@ def intoFahrenheit(celsius): #changes celcius to fahrenheit
 
 
 
-
-
 print("Welcome to the weather program,This program is designed to tell you the weather of a specific place.\n")
  #Correct URL format
 

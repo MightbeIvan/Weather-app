@@ -37,10 +37,17 @@ print("Welcome to the weather program,This program is designed to tell you the w
 
 while play == True:
     #inputs
-    Location = input("What Location's weather would you like to see?: \n> ").strip().capitalize().replace(" ","")
+    Location = input("What Location's weather would you like to see?: \n> ").strip().title()
     url = f'https://api.openweathermap.org/data/2.5/weather?q={Location}&units=metric&appid=6b6fd6ef03e57c965e9ed142598b7a14'
     result = requests.get(url)
     information=result.json()
+    
+    #Error Handling 
+    if information["cod"] != 200:
+        print("Location Not Found")
+        continue
+    
+    
     print(json.dumps(information, indent=4))
     print()
     print("You picked",Location,"\n")
@@ -84,19 +91,19 @@ while play == True:
         play = runagain()
         
     elif options == "3":
-        print("The Description of the main weather in",Location,"is ")
+        print("Description:", information["weather"][0]["description"])
         play = runagain()
         
     elif options =="4":
-        print("The Main")
+        print("Main Weather:", information["weather"][0]["main"])
         play = runagain()
         
     elif options =="5":
-        print("The percentage of clouds in",Location,"is ")
+        print("Cloud Percentage:", information["weather"][all],"%.")
         play = runagain()
         
     elif options =="6":
-        print("The Humidity level in ",Location,"is")
+        print("Humidity Level:", information["wind"]["speed"],"m/s.")
         play = runagain()
         
     elif options == "7":

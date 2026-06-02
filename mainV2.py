@@ -7,6 +7,8 @@ import sys
 from datetime import datetime
 
 os.system('cls||clear')
+# os.system('color 1f')
+
 #Control the While Loop
 running = True 
 
@@ -16,9 +18,13 @@ class WeatherApp:
         self.location = location
         self.api_key = "API_KEY"
         self.url = f' https://api.openweathermap.org/data/2.5/weather?q={location}&units=metric&appid=6b6fd6ef03e57c965e9ed142598b7a14'
-        self.forecast_url = "https://api.openweathermap.org/data/2.5/forecast"
+        self.forecast_url = "https://api.openweathermap.org/data/4.0/onecall/timeline/1h?lat={lat}&lon={lon}&appid={location}"
         self.information = {}
         
+    def hourlyWeather(self):
+        result = requests.get(self.forecast_url)
+        self.information = result.json()
+
     def getWeather(self):
         result = requests.get(self.url)
         self.information = result.json()
@@ -54,11 +60,9 @@ class WeatherApp:
         type(f"Feels Like: {feels_like}°C")
         
 
-        
-    
-#Functions
 
-def runagain(): #Loops through the code.
+#Functions
+def runagain(): 
     type("Would you like to do something else (yes/no)\n>")
     again=input("> ").lower().strip().replace(" ","")
     
@@ -78,29 +82,44 @@ def type(text, delay=0.03):
         time.sleep(delay)
     print()
 
+def loadingAnimation(): # loading effect
+    loadingtime = 5
+    for i in range(loadingtime):
+        os.system('cls||clear')
+        type("Loading . . . ")
+        os.system('cls||clear')
+        time.sleep(0.2)
 
-###########?//////////////////////////////////////////?#######
-
-
-
+'''////////////////////////////////////////////////////////////////////////////////////////////////////////'''
 
 #Main Algorithm
 while running == True:
-    
-    type("Welcome to weatherApp-V2.")
+
+    print("\033[1m" + "Welcome to weather app v2" + "\033[0m")
+    print()
+
     type("What would you like to do today:")
-    
-    type(""" (1) See the Weather.
-          
- (2) See the Humidity.
- 
- (3) See the Wind-Speeds.
- 
- (4) Weather Description.
- 
- (5) Show All.
- 
- (6) Exit Program.""")
+    print()
+
+    type("(1) See the Weather.")
+    print()
+
+    type("(2) See the Humidity.")
+    print()
+
+    type("(3) See the Wind-Speeds.")
+    print()
+
+    type("(4) Weather Description.")
+    print()
+
+    type("(5) Show All.")
+    print()
+
+    type("(6) Exit Program.")
+    print()
+
+    type("(7) Hourly Weather Forcast.")
     
     userdoing = input("> ").strip()
     
@@ -109,8 +128,8 @@ while running == True:
         type("Thank you for using weatherApp-V2. Goodbye!")
         break
         
-    # Validation for choices 1-5
-    if userdoing not in ["1", "2", "3", "4", "5"]:
+    # Validation 
+    if userdoing not in ["1", "2", "3", "4", "5", "7"]:
         type("Invalid option. Please choose a number between 1 and 6.")
         print()
         continue
@@ -130,24 +149,27 @@ while running == True:
     
     # Process the user's choice
     if userdoing == "1":
+        loadingAnimation()
         app.showCelsius()
-        # Optional: Display Fahrenheit using your intoFahrenheit function
+        
         celsius_temp = app.information["main"]["temp"]
         fahrenheit_temp = intoFahrenheit(celsius_temp)
-        type(f" Temperature in Fahrenheit: {fahrenheit_temp:.1f}°F")
+        type(f" Temperature in Fahrenheit: {fahrenheit_temp:}°F")
         
     elif userdoing == "2":
+        loadingAnimation()
         app.showHumidity()
         
     elif userdoing == "3":
         app.showWind()
         
     elif userdoing == "4":
+        loadingAnimation()
         app.showDescription()
         app.showFeelsLike()
         
     elif userdoing == "5":
-        # Show everything combined neatly
+        loadingAnimation()
         app.showCelsius()
         celsius_temp = app.information["main"]["temp"]
         type(f" Temperature in Fahrenheit: {intoFahrenheit(celsius_temp):.1f}°F")
@@ -155,6 +177,9 @@ while running == True:
         app.showDescription()
         app.showHumidity()
         app.showWind()
+    
+    elif userdoing == "7":
+        app.hourlyWeather()
         
         
     print("-" * 30)

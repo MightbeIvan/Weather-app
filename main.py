@@ -40,11 +40,7 @@ while play == True:
     result = requests.get(url)
     information=result.json()
     
-    #Error Handling 
-    if information["cod"] != 200:
-        print("Location Not Found")
-        continue
-    
+
     
     print(json.dumps(information, indent=4))
     print()

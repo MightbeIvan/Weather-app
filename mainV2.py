@@ -15,10 +15,10 @@ running = True
 #Class
 class WeatherApp:
     def __init__(self,location):
-        self.location = location
+        self.location = location 
         self.api_key = "API_KEY"
         self.url = f' https://api.openweathermap.org/data/2.5/weather?q={location}&units=metric&appid=6b6fd6ef03e57c965e9ed142598b7a14'
-        self.forecast_url = "https://api.openweathermap.org/data/4.0/onecall/timeline/1h?lat={lat}&lon={lon}&appid={location}"
+        # self.forecast_url = "https://api.openweathermap.org/data/4.0/onecall/timeline/1h?lat={lat}&lon={lon}&appid={location}}"
         self.information = {}
         
     def hourlyWeather(self):
@@ -31,7 +31,7 @@ class WeatherApp:
         
         if result.status_code != 200:
             type("Location not found.")
-            return False
+            return False 
         return True
         
     def showCelsius(self):
@@ -63,7 +63,7 @@ class WeatherApp:
 
 #Functions
 def runagain(): 
-    type("Would you like to do something else (yes/no)\n>")
+    type("Would you like to do something else (yes/no)")
     again=input("> ").lower().strip().replace(" ","")
     
     if again == "yes" or again == "y":
@@ -86,7 +86,7 @@ def loadingAnimation(): # loading effect
     loadingtime = 5
     for i in range(loadingtime):
         os.system('cls||clear')
-        type("Loading . . . ")
+        (type("Loading . . . "))
         os.system('cls||clear')
         time.sleep(0.2)
 
@@ -117,25 +117,26 @@ while running == True:
     print()
 
     type("(6) Exit Program.")
-    print()
-
-    type("(7) Hourly Weather Forcast.")
+    print()                                                                         
     
     userdoing = input("> ").strip()
     
     # Handle direct exit first
     if userdoing == "6":
-        type("Thank you for using weatherApp-V2. Goodbye!")
-        break
+
+            type("Thank you for using weatherApp-V2. Goodbye!")
+            break
         
     # Validation 
-    if userdoing not in ["1", "2", "3", "4", "5", "7"]:
+    if userdoing not in ["1", "2", "3", "4", "5"]:
         type("Invalid option. Please choose a number between 1 and 6.")
         print()
+        os.system('cls||clear')
         continue
         
     # Get location for options 1-5
-    type("\nEnter city name:")
+    os.system('cls||clear')
+    type("\nEnter Location Name(City,Country):")
     
     city = input("> ").strip()
     app = WeatherApp(city)
@@ -145,31 +146,50 @@ while running == True:
         os.system('cls||clear')
         continue
 
-    type("-" * 30)
+
     
     # Process the user's choice
     if userdoing == "1":
+        os.system('cls||clear')
         loadingAnimation()
+        print()
+        type("-" * 30)
         app.showCelsius()
-        
-        celsius_temp = app.information["main"]["temp"]
+        celsius_temp = app.information["main"]["temp"] 
         fahrenheit_temp = intoFahrenheit(celsius_temp)
         type(f" Temperature in Fahrenheit: {fahrenheit_temp:}°F")
+        type("-" * 30)
         
     elif userdoing == "2":
+        os.system('cls||clear')
         loadingAnimation()
+        print()
+        type("-" * 30)
         app.showHumidity()
+        type("-" * 30)
         
     elif userdoing == "3":
+        os.system('cls||clear')
+        loadingAnimation()
+        print()
+        type("-" * 30)
         app.showWind()
+        type("-" * 30)
         
     elif userdoing == "4":
+        os.system('cls||clear')
         loadingAnimation()
+        print()
+        type("-" * 30)
         app.showDescription()
         app.showFeelsLike()
+        type("- " * 30)
         
     elif userdoing == "5":
+        os.system('cls||clear')
         loadingAnimation()
+        print()
+        type("-" * 30)
         app.showCelsius()
         celsius_temp = app.information["main"]["temp"]
         type(f" Temperature in Fahrenheit: {intoFahrenheit(celsius_temp):.1f}°F")
@@ -177,12 +197,9 @@ while running == True:
         app.showDescription()
         app.showHumidity()
         app.showWind()
-    
-    elif userdoing == "7":
-        app.hourlyWeather()
+        type("-" * 30)
+
         
-        
-    print("-" * 30)
     
     # Check if user wants to look up another city or quit
     running = runagain()
